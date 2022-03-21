@@ -55,5 +55,6 @@ int main()
     output.seekp(4, ios::beg);
     toWavFile(output, postAudioPosition - 8, 4);
     output.close();
+    cout << "An edit for the sake of an edit..." << endl;
     return 0;
 }
