@@ -12,13 +12,11 @@ auto sineAmplitude = 0.5;
 SineWave createSineWave(sineFrequency, sineAmplitude);
 auto max_amplitude = pow(2, bitDepth - 1) - 1;
 
-void toWavFile(ofstream &file, int value, int size)
-{
+void toWavFile(ofstream &file, int value, int size) {
     file.write(reinterpret_cast<const char*> (&value), size);
 }
 
-int main()
-{
+int main() {
     ofstream output;
     output.open("UserName504_sine-to-wav.wav", ios::binary);
 
@@ -32,9 +30,7 @@ int main()
     toWavFile(output, 1, 2);
     toWavFile(output, sampleRate, 4);
     toWavFile(output, sampleRate * bitDepth / 8, 4);
-    //toWavFile(output, sampleRate * bitDepth, 4);
     toWavFile(output, bitDepth / 8, 2);
-    //toWavFile(output, bitDepth, 2);
     toWavFile(output, bitDepth, 2);
 
     output << "data";
@@ -42,8 +38,7 @@ int main()
 
     int preAudioPosition = output.tellp();
 
-    for(int i = 0; i < sampleRate * duration; i++)
-    {
+    for(int i = 0; i < sampleRate * duration; i++) {
         auto sine = createSineWave.create();
         int intSample = static_cast<int> (sine * max_amplitude);
         toWavFile(output, intSample, 2);
